@@ -11,6 +11,9 @@ export default function onFailure(params/*, hash*/) {
   }  else if (params.status === 422) {
     errors = Ember.$.parseJSON(params.responseText).errors;
     return alert(errors);
+  }  else if (params.status === 0) {
+    errors = params.errorThrown.stack;
+    return alert(errors);
   } else {
     var errors = Ember.$.parseJSON(params.responseText).errors;
     return alert(errors);
