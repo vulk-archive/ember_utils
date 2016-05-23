@@ -7,7 +7,12 @@ export default function onFailure(params/*, hash*/) {
   }  else if (params.status === 404) {
     return alert('That item does not exist.');
   }  else if (params.status === 401) {
-    return alert('You are not authorized to access that item.');
+    errors = Ember.$.parseJSON(params.responseText).errors;
+    if (!Ember.isEmpty(errors)){
+      return alert(errors);
+    } else{
+      return alert('You are not authorized to access that item.');
+    }
   }  else if (params.status === 422) {
     errors = Ember.$.parseJSON(params.responseText).errors;
     return alert(errors);
