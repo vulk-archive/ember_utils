@@ -5,7 +5,12 @@ export default function onFailure(params/*, hash*/) {
   if (params.status === 500){
     return alert('Internal server error. Contact administrator');
   }  else if (params.status === 404) {
-    return alert('That item does not exist.');
+    errors = Ember.$.parseJSON(params.responseText).errors;
+    if (!Ember.isEmpty(errors)){
+      return alert(errors);
+    } else{
+      return alert('That item does not exist.');
+    }
   }  else if (params.status === 401) {
     errors = Ember.$.parseJSON(params.responseText).errors;
     if (!Ember.isEmpty(errors)){
