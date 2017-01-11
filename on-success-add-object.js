@@ -1,4 +1,4 @@
-import Ember from 'ember';
+// import Ember from 'ember';
 
 export default function onSuccessAddObject(model_name) {
   console.log('helper onSuccessAddObject');
